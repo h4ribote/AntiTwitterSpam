@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Anti TwitterSpam",
+  "version": "1.2.6",
+  "action": {
+    "default_title": "Anti TwitterSpam",
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "description": "Twitterのスパムにさようならして快適なツイ廃ライフを!",
+  "icons": { "256": "icon.png" },
+
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": [
+        "https://x.com/*",
+        "https://mobile.x.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icon.png",
+        "twitter_script.js",
+        "twitter_style.css"
+      ],
+      "matches": [
+        "https://x.com/*",
+        "https://mobile.x.com/*"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "AntiTwitterSpam@yoking.dev",
+      "strict_min_version": "109.0"
+    },
+    "gecko_android": {
+      "id": "AntiTwitterSpam@yoking.dev",
+      "strict_min_version": "120.0"
+    }
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://mobile.x.com/*"
+  ],
+  "author": "https://x.com/ReYYYYoking"
+}
